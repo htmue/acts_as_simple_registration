@@ -5,7 +5,7 @@ This allows to map model attributes to OpenID Simple Registration attributes.
 It is meant to be used in conjunction with an OpenID consumer to ease passing
 of registration data.
 
-The following attributes are defined by the :
+The following attributes are defined by the Simple Registration specification:
 
 openid.sreg.nickname::
     Any UTF-8 string that the End User wants to use as a nickname.
