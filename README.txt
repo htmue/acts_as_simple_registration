@@ -73,8 +73,8 @@ In begin phase:
   oidreq = consumer.begin params[:openid_identifier]
   # ...
   sregreq = OpenID::SReg::Request.new
-  sregreq.request_fields model.sreg_required, true
-  sregreq.request_fields model.sreg_optional, false
+  sregreq.request_fields User.sreg_required, true
+  sregreq.request_fields User.sreg_optional, false
   oidreq.add_extension(sregreq)
   # ...  
   redirect_to oidreq.redirect_url(realm, return_to)
