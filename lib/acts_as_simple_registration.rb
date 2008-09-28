@@ -60,8 +60,8 @@ module ActAsSimpleRegistration
   
   module InstanceMethods
     def assign_sreg_attributes(sreg)
-      sreg_mapping.each do |model_attribute, sreg_attribute|
-        send "#{model_attribute}=", sreg[sreg_attribute]
+      sreg_mapping.each do |sreg_attribute, model_attribute|
+        send "#{model_attribute}=", sreg[sreg_attribute.to_s]
       end
     end
     

@@ -76,7 +76,7 @@ describe ActAsSimpleRegistration do
       model.class.send :acts_as_simple_registration do
         optional :email
       end
-      model.assign_sreg_attributes :email => 'email@test.local'
+      model.assign_sreg_attributes 'email' => 'email@test.local'
       model.email.should == 'email@test.local'
     end
 
@@ -85,7 +85,7 @@ describe ActAsSimpleRegistration do
         optional :email
       end
       model.should_receive(:save).and_return true
-      model.assign_sreg_attributes! :email => 'email@test.local'
+      model.assign_sreg_attributes! 'email' => 'email@test.local'
     end
 
     it "should not save the model when attribute was not changed" do
@@ -94,14 +94,14 @@ describe ActAsSimpleRegistration do
       end
       model.should_receive(:changed?).and_return false
       model.should_not_receive(:save)
-      model.assign_sreg_attributes! :email => 'email@test.local'
+      model.assign_sreg_attributes! 'email' => 'email@test.local'
     end
 
     it "should handle nil" do
       model.class.send :acts_as_simple_registration do
         optional :email
       end
-      model.assign_sreg_attributes :email => nil
+      model.assign_sreg_attributes 'email' => nil
       model.email.should be_blank
     end
     
