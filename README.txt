@@ -1,11 +1,9 @@
 acts_as_simple_registration
 ===========================
 
-This allows to map model attributes to OpenID Simple Registration attributes.
-It is meant to be used in conjunction with an OpenID consumer to ease passing
-of registration data.
+Use an ActiveRecord model for storing OpenID Simple Registration data.
 
-The following attributes are defined by the Simple Registration specification:
+The following Simple Registration attributes are defined by the specification:
 
 openid.sreg.nickname::
     Any UTF-8 string that the End User wants to use as a nickname.
@@ -50,7 +48,7 @@ Source: http://openid.net/specs/openid-simple-registration-extension-1_0.html
 Example
 =======
 
-Given a simple User model:
+Given a User model:
 
   ActiveRecord::Schema.define(:version => 0) do
     create_table :sreg_users, :force => true do |t|
@@ -66,7 +64,7 @@ Given a simple User model:
     end
   end
 
-Use something like this conjunction with an OpenID signin:
+Use something like this during an OpenID signin:
 
 In begin phase:
 
@@ -86,7 +84,7 @@ In complete phase:
   if oidresp.status == OpenID::Consumer::SUCCESS
     # ...  
     user = User.new
-    user.assign_sreg_attributes! OpenID::SReg::Response.from_success_response oidresp
+    user.assign_sreg_attributes! OpenID::SReg::Response.from_success_response(oidresp)
     # ...  
   end
 
